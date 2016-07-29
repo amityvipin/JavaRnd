@@ -20,6 +20,7 @@ public class Stack<T extends Comparable<T>> {
 	}
 	
 	public T pop(){
+		array[top]=null;
 		return array[top--];
 	}
 	
