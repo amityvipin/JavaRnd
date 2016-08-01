@@ -5,21 +5,26 @@ import java.util.stream.Stream;
 
 public class Stack<T extends Comparable<T>> {
 	
+	java.util.Stack<T> stackOfMinimum = new java.util.Stack<T>();
+	
 	@SuppressWarnings("unchecked")
 	public Stack(Class<T> clazz, int capacity) {
         array = (T[])Array.newInstance(clazz, capacity);
     }
 	int top = 0;
     private final T[] array;
-	int mininumIndex = -1;
 	public void push(T value){
-		if(mininumIndex==-1 || value.compareTo(array[mininumIndex])<0){
-			mininumIndex = top;
+		if(stackOfMinimum.isEmpty()){
+			stackOfMinimum.push(value);
+		}else if(stackOfMinimum.peek().compareTo(value)>=0){
+			stackOfMinimum.push(value);
 		}
 		array[top++] = value;
 	}
 	
 	public T pop(){
+		if(array[top].compareTo(stackOfMinimum.peek())==0)
+			stackOfMinimum.pop();
 		array[top]=null;
 		return array[top--];
 	}
@@ -29,7 +34,7 @@ public class Stack<T extends Comparable<T>> {
 	}
 	
 	public T minimum(){
-		return array[mininumIndex];
+		return stackOfMinimum.peek();
 	}
 
 	public void print(){

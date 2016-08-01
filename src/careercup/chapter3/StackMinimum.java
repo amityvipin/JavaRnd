@@ -10,6 +10,7 @@ public class StackMinimum {
 		stack.push(9);
 		stack.push(9);
 		stack.push(5);
+		stack.push(1);
 		System.out.println(stack.minimum());
 		stack.print();
 	}
