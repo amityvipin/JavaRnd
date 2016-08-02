@@ -1,8 +1,11 @@
 package careercup.chapter4;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MinimalTree {
 
-	public BinaryTreeNode<Integer> createMinimalTree(int[] input){
+	public BinaryTreeNode<Integer> createTree(int[] input){
 		BinaryTreeNode<Integer> root = null;
 		BinaryTreeNode<Integer> temp = null;
 		int size = 0;
@@ -26,9 +29,26 @@ public class MinimalTree {
 		return root;
 	}
 	
+	public BinaryTreeNode<Integer> createMinimalTree(Integer[] input){
+		List<Integer> inputList = Arrays.asList(input);
+		return balance(inputList);
+	}
+	
+	private BinaryTreeNode<Integer> balance(List<Integer> inputList) {
+		if(inputList.isEmpty())
+			return null;
+		int midIndex = inputList.size()%2==0?inputList.size()/2-1:inputList.size()/2;
+		int value = inputList.get(midIndex);
+		BinaryTreeNode<Integer> node = new BinaryTreeNode<>(value);
+		node.left = balance(inputList.subList(0, midIndex));
+		node.right = balance(inputList.subList(midIndex+1, inputList.size()));
+		return node;
+	}
+
+
 	public static void main(String args[]){
 		MinimalTree minimalTreeNode = new MinimalTree();
-		int[] values = {1,2,3,4,5,6,7,8,9};
+		Integer[] values = {1,2,3,4,5,6};
 		minimalTreeNode.createMinimalTree(values).preOrder();
 	}
 }
