@@ -34,4 +34,8 @@ public class BinaryTreeNode<T> {
 		System.out.println(data);
 	}
 	
+	public String toString(){
+		return data+"";
+	}
+	
 }
