@@ -41,7 +41,11 @@ public class MinimalTree {
 		int value = inputList.get(midIndex);
 		BinaryTreeNode<Integer> node = new BinaryTreeNode<>(value);
 		node.left = balance(inputList.subList(0, midIndex));
+		if(node.left!=null)
+			node.left.parent=node;
 		node.right = balance(inputList.subList(midIndex+1, inputList.size()));
+		if(node.right!=null)
+			node.right.parent=node;
 		return node;
 	}
 

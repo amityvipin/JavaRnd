@@ -5,6 +5,7 @@ public class BinaryTreeNode<T> {
 	public BinaryTreeNode<T> left;
 	public BinaryTreeNode<T> right;
 	public BinaryTreeNode<T> parent;
+	public boolean isVisited;
 	
 	public BinaryTreeNode(T data){
 		this.data = data;
@@ -36,6 +37,14 @@ public class BinaryTreeNode<T> {
 	
 	public String toString(){
 		return data+"";
+	}
+
+	public boolean isVisited() {
+		return isVisited;
+	}
+
+	public void setVisited(boolean isVisited) {
+		this.isVisited = isVisited;
 	}
 	
 }
